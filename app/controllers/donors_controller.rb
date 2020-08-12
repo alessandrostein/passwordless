@@ -3,17 +3,17 @@
 class DonorsController < ApplicationController
   include Passwordless::ControllerHelpers
 
-  before_action :require_donor!
-  helper_method :current_donor
+  before_action :require_user!
+  helper_method :current_user
 
   private
 
-  def current_donor
-    @current_donor ||= authenticate_by_session(Donor)
+  def current_user
+    @current_user ||= authenticate_by_session(User)
   end
 
-  def require_donor!
-    return if current_donor
+  def require_user!
+    return if current_user
 
     redirect_to '/donors/sign_in', flash: { error: 'You are not worthy!' }
   end
