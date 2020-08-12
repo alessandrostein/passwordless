@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   passwordless_for :donors, at: '/donors', as: :auth
 
-  get '/admin', to: 'admin#index'
+  get '/admin', to: 'admin/dashboard#index'
+  get '/donor', to: 'donors/dashboard#index'
   root 'site#index'
 end
